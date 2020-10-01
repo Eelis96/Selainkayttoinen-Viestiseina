@@ -10,7 +10,7 @@ if($xml->knimi == $username){
     if($xml->salasana == $password){
         $_SESSION['username'] = $username;
         $_SESSION['logged_in']  = true;
-        header('location:index.php');
+        header('location:hallintapaneeli.php');
     }else{
         header('location:loginform.php?invalidpassword');
     }
