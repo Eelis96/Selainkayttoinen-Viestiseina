@@ -33,13 +33,16 @@ session_start();
             $xml = simplexml_load_file("viestit.xml");
     
             foreach($xml->viestit as $viestit){
-                echo'<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                if($viestit->attributes()['piilossa'] == 'false'){
+                    echo'<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
                     <div class="card-header">' .$viestit->paivamaara. '</div>
                     <div class="card-body">
                         <h3 class="card-title">' .htmlspecialchars($viestit->viesti). '</h3>
                         <p class="card-text">' .htmlspecialchars($viestit->nimi). '</p>
                     </div>
                 </div>';
+                }
+            
             }
     
             //header("Refresh:120");

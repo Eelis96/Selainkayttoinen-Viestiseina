@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if(isset($_GET['action']) && isset($_GET['id'])){
+    include_once 'functions.php';
+    $id = intval($_GET['id']);
+
+    toggleVisibility($id);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,5 +30,25 @@ session_start();
         <h1>Viestiseinä</h1>
     </div>
 
+    <?php
+    $xml = simplexml_load_file("viestit.xml");
+    ?>
+
+    <?php 
+        foreach($xml->viestit as $viestit){
+            if($viestit->attributes()['piilossa'] == 'false'){
+                echo '<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">' .$viestit->paivamaara. '</div>
+                <div class="card-body">
+                    <h3 class="card-title">' .htmlspecialchars($viestit->viesti). '</h3>
+                    <p class="card-text">' .htmlspecialchars($viestit->nimi). '</p>
+                </div>
+                <div class="card-footer">Piilota</div>
+            </div>'
+            }
+        }          
+        
+  
+    ?>
 </body>
 </html>
