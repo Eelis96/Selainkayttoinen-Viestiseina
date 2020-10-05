@@ -43,12 +43,20 @@ if(isset($_GET['action']) && isset($_GET['id'])){
                     <h3 class="card-title">' .htmlspecialchars($viestit->viesti). '</h3>
                     <p class="card-text">' .htmlspecialchars($viestit->nimi). '</p>
                 </div>
-                <div class="card-footer">Piilota</div>
-            </div>'
+                <div class="card-footer"><form action="" method="GET"><input class="btn btn-outline-warning" type="submit" value="Piilota" name="Piilota"></form></div>
+            </div>';
+            }else if($viestit->attributes()['piilossa'] == 'true'){
+                echo '<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">' .$viestit->paivamaara. '</div>
+                <div class="card-body">
+                    <h3 class="card-title">' .htmlspecialchars($viestit->viesti). '</h3>
+                    <p class="card-text">' .htmlspecialchars($viestit->nimi). '</p>
+                </div>
+                <div class="card-footer"><form action="" method="GET"><input class="btn btn-outline-info" type="submit" value="Näytä" name="Näytä"></form></div>
+            </div>';
             }
-        }          
-        
-  
-    ?>
+        }  
+    ?>  
+
 </body>
 </html>
