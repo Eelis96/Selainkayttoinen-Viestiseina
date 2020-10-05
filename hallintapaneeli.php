@@ -1,12 +1,5 @@
 <?php
 session_start();
-
-if(isset($_GET['action']) && isset($_GET['id'])){
-    include_once 'functions.php';
-    $id = intval($_GET['id']);
-
-    toggleVisibility($id);
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +28,8 @@ if(isset($_GET['action']) && isset($_GET['id'])){
     ?>
 
     <?php 
+        $id = 0;
+
         foreach($xml->viestit as $viestit){
             if($viestit->attributes()['piilossa'] == 'false'){
                 echo '<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
@@ -43,7 +38,12 @@ if(isset($_GET['action']) && isset($_GET['id'])){
                     <h3 class="card-title">' .htmlspecialchars($viestit->viesti). '</h3>
                     <p class="card-text">' .htmlspecialchars($viestit->nimi). '</p>
                 </div>
-                <div class="card-footer"><form action="" method="GET"><input class="btn btn-outline-warning" type="submit" value="Piilota" name="Piilota"></form></div>
+                <div class="card-footer">
+                    <form action="toggle.php" method="POST">
+                        <input type="hidden" name="id" value="' .$id. '">
+                        <input type="submit" value="Piilota" class="btn btn-outline-warning">
+                    </form>
+                </div>
             </div>';
             }else if($viestit->attributes()['piilossa'] == 'true'){
                 echo '<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
@@ -52,10 +52,16 @@ if(isset($_GET['action']) && isset($_GET['id'])){
                     <h3 class="card-title">' .htmlspecialchars($viestit->viesti). '</h3>
                     <p class="card-text">' .htmlspecialchars($viestit->nimi). '</p>
                 </div>
-                <div class="card-footer"><form action="" method="GET"><input class="btn btn-outline-info" type="submit" value="Näytä" name="Näytä"></form></div>
+                <div class="card-footer">
+                    <form action="toggle.php" method="POST">
+                        <input type="hidden" name="id" value="' .$id. '">
+                        <input type="submit" value="Näytä" class="btn btn-outline-info">
+                    </form>
+                </div>
             </div>';
             }
-        }  
+            $id++;   
+        }
     ?>  
 
 </body>

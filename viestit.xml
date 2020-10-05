@@ -1,13 +1,8 @@
 <?xml version="1.0"?>
 <kviestit>
   <viestit piilossa="false">
-    <nimi>eelis</nimi>
-    <viesti>moi</viesti>
-    <paivamaara>13:12 01-10-2020</paivamaara>
-  </viestit>
-  <viestit piilossa="true">
-    <nimi>ok</nimi>
-    <viesti>ok</viesti>
-    <paivamaara>14:25 01-10-2020</paivamaara>
+    <nimi>Eelis</nimi>
+    <viesti>Toimiiko</viesti>
+    <paivamaara>10:37 05-10-2020</paivamaara>
   </viestit>
 </kviestit>
